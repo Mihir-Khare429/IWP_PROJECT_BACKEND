@@ -15,11 +15,13 @@ var upload = multer({ storage: storage });
 const signUp = require('./signup');
 const signIn = require('./signin');
 const candidateRegistration = require('./candidateRegistration');
-const castVote = require('./castVote')
+const castVote = require('./castVote');
+const getVoteCount = require('./getVoteCount');
 
 router.post('/signup',signUp);
 router.post('/signin',signIn);
 router.post('/candidate/signup',upload.single('image'),candidateRegistration);
 router.post('/vote',castVote);
+router.get('/vote/count',getVoteCount);
 
 module.exports = router
