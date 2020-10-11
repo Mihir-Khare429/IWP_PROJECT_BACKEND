@@ -5,6 +5,8 @@ const port = process.env.PORT || 3005;
 const userRoutes = require('./routes/index');
 require('./db/connection');
 
+app.use('/uploads',express.static(__dirname+'uploads'));
+app.use(express.urlencoded({extended:true}));
 app.use(express.json());
 app.use(userRoutes);
 

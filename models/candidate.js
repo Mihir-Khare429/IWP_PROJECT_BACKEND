@@ -18,7 +18,6 @@ const candidateSchema = new mongoose.Schema({
         type:String,
         required:true,
         minlength:10,
-        maxlength:10,
         unique:true
     },
     about:{
@@ -30,9 +29,8 @@ const candidateSchema = new mongoose.Schema({
         default:0
     },
     image:{
-        type:Buffer,
-        contentType:String
+        type:String
     }
 })
 
-module.exports = mongoose.model('candiadate',candidateSchema)
+module.exports = mongoose.model('Candiadate',candidateSchema)
