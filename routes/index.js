@@ -28,7 +28,6 @@ const signIn = require('./signin');
 const candidateRegistration = require('./candidateRegistration');
 const castVote = require('./castVote');
 const getVoteCount = require('./getVoteCount');
-const getURL = require('./uploadSetup');
 
 router.post('/signup',signUp);
 router.post('/signin',signIn);
