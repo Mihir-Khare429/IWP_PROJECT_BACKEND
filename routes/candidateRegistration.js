@@ -1,4 +1,5 @@
 const Candidate = require('../models/candidate');
+const axios = require('axios');
 const fs = require('fs');
 
 const candidateRegistration = async(req,res) => {
@@ -6,9 +7,8 @@ const candidateRegistration = async(req,res) => {
         const body = req.body
         var candidate = new Candidate({
             ...body,
-            image:req.file.path
+            image:req.file.location
         });
-        console.log(candidate)
         await candidate.save();
         res.status(200).send({
             success : true,
