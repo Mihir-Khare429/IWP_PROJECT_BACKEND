@@ -11,8 +11,9 @@ const castVote = async(req,res) => {
                 message : 'No Candidate Found'
             })
         }
-        candidate.vote = candidate.vote++;
-        candidate = await Candidate.updateOne({email},{vote : candidate.vote})
+        let newCount = candidate.voteCount;
+        newCount++;
+        candidate = await Candidate.updateOne({email},{voteCount : newCount})
         res.status(400).send({
             success : true,
             message : 'Vote Stored'
