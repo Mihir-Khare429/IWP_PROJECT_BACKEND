@@ -4,6 +4,12 @@ const fs = require('fs');
 
 const candidateRegistration = async(req,res) => {
     try{
+        if(!req.verifyStatus || req.verifyStatus == false){
+            return res.status(404).send({
+                success:false,
+                message:'Authentication Failed'
+            })
+        }
         const body = req.body
         var candidate = new Candidate({
             ...body,

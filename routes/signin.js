@@ -1,4 +1,6 @@
 const User = require('../models/user');
+const jwt = require('jsonwebtoken');
+require('dotenv').config();
 
 const signIn = async(req,res) => {
     try{
@@ -16,9 +18,13 @@ const signIn = async(req,res) => {
                 message:'Incorrect Password'
             })
         }
+        let token;
+        if(user){
+            token = jwt.sign({verified:true},process.env.SECRET)
+        }
         return res.status(404).send({
             success:true,
-            message:user
+            token:token
         })
     }catch(err){
         console.log(err)

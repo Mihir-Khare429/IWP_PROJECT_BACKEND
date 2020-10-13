@@ -2,6 +2,12 @@ const Candidate = require('../models/candidate');
 
 const castVote = async(req,res) => {
     try{
+        if(!req.verifyStatus || req.verifyStatus == false){
+            return res.status(404).send({
+                success:false,
+                message:'Authentication Failed'
+            })
+        }
         const body = req.body
         const email = body.email
         let candidate  = await Candidate.findOne({email})

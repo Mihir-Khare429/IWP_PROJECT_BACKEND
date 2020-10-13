@@ -1,4 +1,6 @@
+require('dotenv').config()
 const User = require('../models/user');
+const jwt = require('jsonwebtoken');
 
 const signUp = async(req,res)=>{
     try{
@@ -7,9 +9,11 @@ const signUp = async(req,res)=>{
             ...body
         })
         await user.save()
+        let token = jwt.sign({verified:true},process.env.SECRET)
         res.status(200).send({
             success : true,
-            message : 'User Credentials Saved Successfully'
+            message : 'User Credentials Saved Successfully',
+            token
         })
     }catch(err){
         console.log(err);
