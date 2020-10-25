@@ -22,7 +22,7 @@ const signIn = async(req,res) => {
         if(user){
             token = jwt.sign({verified:true},process.env.SECRET)
         }
-        return res.status(404).send({
+        return res.status(200).send({
             success:true,
             token:token
         })
