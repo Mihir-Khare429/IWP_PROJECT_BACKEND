@@ -1,6 +1,6 @@
 const formidable = require('formidable');
 
-const parserFn = async function(req,res){
+const parserFn = async function(req,res,next){
     try{
         const form = formidable({ multiples: true });
  
@@ -14,9 +14,11 @@ const parserFn = async function(req,res){
                 ...fields,
                 ...files
             }
+            console.log(req.body)
+            next()
         });
     }catch(err){
-
+        console.log(err)
     }
 }
 
