@@ -12,7 +12,11 @@ const candidateRegistration = async(req,res) => {
         }
         let body = req.body
         var candidate = new Candidate({
-            ...body,
+            name:body.name,
+            organizationName:body.organizationName,
+            about:body.about,
+            mobile:body.mobile,
+            email:body.email,
             image:req.file.location
         });
         await candidate.save();
