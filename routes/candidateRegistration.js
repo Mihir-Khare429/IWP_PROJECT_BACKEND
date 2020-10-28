@@ -10,14 +10,10 @@ const candidateRegistration = async(req,res) => {
                 message:'Authentication Failed'
             })
         }
-        let body = req.body
-        console.dir('gugkg'+body)
+        const body = req.body
+        console.log(body)
         var candidate = new Candidate({
-            name:body.name,
-            organizationName:body.organizationName,
-            about:body.about,
-            mobile:body.mobile,
-            email:body.email,
+            ...body,
             image:req.file.location
         });
         await candidate.save();

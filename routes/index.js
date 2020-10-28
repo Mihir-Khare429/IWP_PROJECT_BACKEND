@@ -32,7 +32,7 @@ const getVoteCount = require('./getVoteCount');
 
 router.post('/signup',signUp);
 router.post('/signin',signIn);
-router.post('/candidate/signup',parserFn,authMiddleware,uploadS3.single('image'),candidateRegistration);
+router.post('/candidate/signup',authMiddleware,uploadS3.single('image'),candidateRegistration);
 router.post('/vote',authMiddleware,castVote);
 router.get('/vote/count',authMiddleware,getVoteCount);
 
