@@ -11,7 +11,7 @@ const candidateRegistration = async(req,res) => {
             })
         }
         const body = req.body
-        console.log(body)
+        console.log('At Candidate' + body)
         var candidate = new Candidate({
             ...body,
             image:req.file.location
