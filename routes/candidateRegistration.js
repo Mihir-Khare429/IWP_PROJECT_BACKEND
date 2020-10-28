@@ -10,7 +10,12 @@ const candidateRegistration = async(req,res) => {
                 message:'Authentication Failed'
             })
         }
-        const body = req.body
+        let body = req.body
+        try{
+            body = JSON.parse(body)
+        }catch(err){
+            console.log(err)
+        }
         console.log('At Candidate' + body)
         var candidate = new Candidate({
             ...body,
