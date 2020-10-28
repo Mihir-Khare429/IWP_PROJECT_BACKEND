@@ -11,12 +11,12 @@ const candidateRegistration = async(req,res) => {
             })
         }
         let body = req.body
+        console.log('At Candidate' + body)
         try{
             body = JSON.parse(body)
         }catch(err){
             console.log(err)
         }
-        console.log('At Candidate' + body)
         var candidate = new Candidate({
             ...body,
             image:req.file.location
