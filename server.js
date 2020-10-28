@@ -10,7 +10,15 @@ require('./db/connection');
 app.use(cors())
 app.use('/uploads',express.static(__dirname+'uploads'));
 app.use(bodyParser.urlencoded({limit: '12mb', extended: true, parameterLimit: 1000000}));
-app.use(bodyParser.json({limit: '12mb'}));
+app.use(
+    bodyParser.json({
+      type: "application/json",
+      limit: "12mb",
+      verify: function (req, res, buf) {
+        req.rawBody = buf.toString();
+      },
+    })
+  );
 app.use(userRoutes);
 
 app.listen(port,(err)=>{
