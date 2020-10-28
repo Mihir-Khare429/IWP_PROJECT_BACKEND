@@ -10,6 +10,10 @@ const parserFn = async function(req,res){
             return;
             }
             console.log({ fields, files });
+            req.body = {
+                ...fields,
+                ...files
+            }
         });
     }catch(err){
 
