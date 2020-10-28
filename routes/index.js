@@ -1,5 +1,6 @@
 require('dotenv').config();
 const router = require('express').Router();
+const cors = require('cors');
 var multer = require('multer'); 
 var multers3 = require('multer-s3');
 const AWS = require('aws-sdk');
@@ -31,7 +32,7 @@ const getVoteCount = require('./getVoteCount');
 
 router.post('/signup',signUp);
 router.post('/signin',signIn);
-router.post('/candidate/signup',authMiddleware,uploadS3.single('image'),candidateRegistration);
+router.post('/candidate/signup',cors(),authMiddleware,uploadS3.single('image'),candidateRegistration);
 router.post('/vote',authMiddleware,castVote);
 router.get('/vote/count',authMiddleware,getVoteCount);
 
