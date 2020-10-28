@@ -9,11 +9,11 @@ const parserFn = async function(req,res,next){
             next(err);
             return;
             }
-            console.log({ fields, files });
             req.body = {
                 ...fields,
                 ...files
             }
+            req.file = {...files}
             console.log(req.body)
             next()
         });
