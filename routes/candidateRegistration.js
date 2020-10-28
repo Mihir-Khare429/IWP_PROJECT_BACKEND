@@ -11,6 +11,7 @@ const candidateRegistration = async(req,res) => {
             })
         }
         let body = req.body
+        console.dir('gugkg'+body)
         var candidate = new Candidate({
             name:body.name,
             organizationName:body.organizationName,
