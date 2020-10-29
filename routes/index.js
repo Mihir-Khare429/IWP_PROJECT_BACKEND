@@ -39,11 +39,13 @@ const signIn = require('./signin');
 const candidateRegistration = require('./candidateRegistration');
 const castVote = require('./castVote');
 const getVoteCount = require('./getVoteCount');
+const getCandidates = require('./getCandidates');
 
 router.post('/signup',signUp);
 router.post('/signin',signIn);
 router.post('/candidate/signup',authMiddleware,uploadS3.single('image'),candidateRegistration);
 router.post('/vote',authMiddleware,castVote);
 router.get('/vote/count',authMiddleware,getVoteCount);
+router.get('/candidates',authMiddleware,getCandidates);
 
 module.exports = router
