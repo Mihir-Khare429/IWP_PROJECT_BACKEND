@@ -3,16 +3,13 @@ const jwt = require('jsonwebtoken');
 
 const authVerification = async function(req,res,next){
     try{
-        const secret = process.env.SECRET
-        console.log('At Auth'+req.body)
-        if(!req.body.token){
+        if(!req.headers.authorization){
             return res.status(404).send({
                 success:false,
                 message:'No token Provided'
             })
         }
-        const verify = jwt.verify(req.body.token,process.env.SECRET)
-        console.log(verify)
+        const verify = jwt.verify(req.headers.authorization,process.env.SECRET)
         if(!verify || !verify.verified){
             return res.status(404).send({
                 success:false,

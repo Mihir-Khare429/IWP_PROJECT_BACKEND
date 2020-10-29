@@ -1,6 +1,4 @@
 const Candidate = require('../models/candidate');
-const axios = require('axios');
-const fs = require('fs');
 
 const candidateRegistration = async(req,res) => {
     try{
@@ -11,7 +9,7 @@ const candidateRegistration = async(req,res) => {
             })
         }
         const body = req.body
-        console.log(body)
+        console.log('File'+req.file)
         var candidate = new Candidate({
             ...body,
             image:req.file.location

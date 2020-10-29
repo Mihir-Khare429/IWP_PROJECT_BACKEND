@@ -3,19 +3,29 @@ const router = require('express').Router();
 var multer = require('multer'); 
 var multers3 = require('multer-s3');
 const AWS = require('aws-sdk');
-const parserFn = require('../middlewares/formid');
 const authMiddleware = require('../middlewares/auth');
 const s3 = new AWS.S3({
     accessKeyId:process.env.Access_Key_ID,
     secretAccessKey:process.env.Secret_Access_Key
 })
 
+var storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, '../uploads/')
+  },
+  filename: function (req, file, cb) {
+    cb(null, file.fieldname + '-' + Date.now())
+  }
+})
+ 
+var upload = multer({ storage: storage })
+
 const uploadS3 = multer({
     storage: multers3({
       s3: s3,
       acl: 'public-read',
       bucket: 'vote-with-ease',
-      metadata: (req, file, cb) => {
+      metadata: (req, file,cb) => {
         cb(null, {fieldName: file.fieldname})
       },
       key: (req, file, cb) => {
