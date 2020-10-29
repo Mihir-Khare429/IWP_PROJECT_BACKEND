@@ -20,7 +20,7 @@ const castVote = async(req,res) => {
         let newCount = candidate.voteCount;
         newCount++;
         candidate = await Candidate.updateOne({email},{voteCount : newCount})
-        res.status(400).send({
+        res.status(200).send({
             success : true,
             message : 'Vote Stored'
         })
