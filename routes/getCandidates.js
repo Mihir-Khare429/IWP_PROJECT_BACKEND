@@ -8,7 +8,7 @@ const getCandidate = async function(req,res){
                 message:'Authentication Failed'
             })
         }
-        const candidates = await Candidate.find({},{name:1,email:1,image:1}).lean()
+        const candidates = await Candidate.find({},{name:1,email:1,image:1,about:1,organizationName:1}).lean()
         if(!candidates){
             return res.status(401).send({
                 success:false,
